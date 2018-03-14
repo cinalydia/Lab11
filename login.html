@@ -5,15 +5,37 @@
     <title>Lab 11: The Login Popup Form</title>
     <link href="css/styles.css" rel="stylesheet">
     <script>
-
+        function init() {
+            "use strict";
+            
+            //set child window width and height and set it to center of screen
+            var width = 640;
+            var height = 480;
+           
+            //use resize method to resize values
+            window.resizeTo(width, height);
+            window.moveTo(((window.screen.width - width) / 2),((window.screen.height - height) / 2));//should be centered...
+            
+            var btnLogin = window.document.getElementById("login");
+            btnLogin.addEventListener("click", function () {
+                var username = window.document.getElementById("username").value;
+                var password = window.document.getElementById("password").value;
+            });//callback function, collect values of two text boxes, storing into two separate variables, and pass over values to ___.
+            
+            //now get login details of the parent
+            var output = window.opener.document.getElementById("logindetails");//getting output tag from index page
+            
+            output.innerHTML = "<br><br>Username: " + username + "<br>Password: " + password;
+            window.close();
+        }
     </script>
 </head>
 <body id="loginpage">
     <h1>Account Access Log In</h1>
     <form id="accountlogin">
-        <strong>Username</strong><br>
+        <strong>Username</strong><br><!--represents username-->
         <input type="text" id="username"><br>
-        <strong>Password</strong><br>
+        <strong>Password</strong><br><!--represents password-->
         <input type="password" id="password">
         <button id="login">Log In</button>
     </form>
